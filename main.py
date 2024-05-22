@@ -2,12 +2,15 @@ from tkinter import *
 import customtkinter
 from gui_functions import *
 
+#gui scale for widgets
 customtkinter.set_widget_scaling(1.8)
 
+#Main page
 class MainPage(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        # add widgets onto the frame, for example:
+
+        # add widgets here
         button1 = customtkinter.CTkButton(master=self, 
         text="button1", 
         fg_color='#006633',
@@ -21,13 +24,15 @@ class MainPage(customtkinter.CTkFrame):
         button2.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
         button3.place(relx=0.85, rely=0.5, anchor=customtkinter.CENTER)
 
+#Currently an empty second page
 class NewPage(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        # add widgets onto the frame, for example:
+        
+        #add widgets here
         
 
-
+#The app itself
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
