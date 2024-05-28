@@ -13,13 +13,25 @@ class MainPage(customtkinter.CTkFrame):
 
         # add widgets here
         button1 = customtkinter.CTkButton(master=self, 
-        text="button1", 
+        text="Standaard", 
         fg_color='#006633',
-        hover_color='#00592C', 
+        hover_color='#00592C',
+        corner_radius=5,
         command=lambda: change_frame(self,page1))
 
-        button2 = customtkinter.CTkButton(master=self, text="button2", fg_color='#006633',hover_color='#00592C', command=lambda: change_frame(self,page2))
-        button3 = customtkinter.CTkButton(master=self, text="button3", fg_color='#006633',hover_color='#00592C', command=lambda: change_frame(self,page3))
+        button2 = customtkinter.CTkButton(master=self, 
+        text="Rollator", 
+        fg_color='#006633',
+        hover_color='#00592C',
+        corner_radius=5,
+        command=lambda: change_frame(self,page2))
+
+        button3 = customtkinter.CTkButton(master=self, 
+        text="Rolstoel",
+        fg_color='#006633', 
+        hover_color='#00592C',
+        corner_radius=5, 
+        command=lambda: change_frame(self,page3))
 
         mainlogo = Image.open("./images/walkintheparq-logo.png")
         
@@ -28,7 +40,6 @@ class MainPage(customtkinter.CTkFrame):
         test = ImageTk.PhotoImage(mainlogo)
         
         label = Label(image=test)
-        
         
         button1.place(relx=0.15, rely=0.5, anchor=customtkinter.CENTER)
         button2.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
