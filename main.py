@@ -1,6 +1,7 @@
 from tkinter import *
 import customtkinter
 from gui_functions import *
+from PIL import ImageTk, Image
 
 #gui scale for widgets
 customtkinter.set_widget_scaling(1.8)
@@ -19,6 +20,12 @@ class MainPage(customtkinter.CTkFrame):
 
         button2 = customtkinter.CTkButton(master=self, text="button2", fg_color='#006633',hover_color='#00592C')
         button3 = customtkinter.CTkButton(master=self, text="button3", fg_color='#006633',hover_color='#00592C')
+
+        image = Image.open("./images/image.jpg")
+        test = ImageTk.PhotoImage(image)
+        self.photo = test
+        label = Label(image=test)
+        label.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
 
         button1.place(relx=0.15, rely=0.5, anchor=customtkinter.CENTER)
         button2.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
