@@ -13,6 +13,7 @@ class MainPage(customtkinter.CTkFrame):
 
         bg_color = 'white'
         self.configure(fg_color=bg_color)
+        self._corner_radius = 0
 
         # add widgets here
         button1 = customtkinter.CTkButton(master=self, 
@@ -53,9 +54,9 @@ class MainPage(customtkinter.CTkFrame):
         canvas.create_image(0, 0, anchor=NW, image=logo)
         canvas.image = logo
         
-        button1.place(relx=0.15, rely=0.5, anchor=customtkinter.CENTER)
-        button2.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
-        button3.place(relx=0.85, rely=0.5, anchor=customtkinter.CENTER)
+        button1.place(relx=0.15, rely=0.7, anchor=customtkinter.CENTER)
+        button2.place(relx=0.5, rely=0.7, anchor=customtkinter.CENTER)
+        button3.place(relx=0.85, rely=0.7, anchor=customtkinter.CENTER)
         canvas.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
 
 
