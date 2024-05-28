@@ -21,8 +21,12 @@ class MainPage(customtkinter.CTkFrame):
         button2 = customtkinter.CTkButton(master=self, text="button2", fg_color='#006633',hover_color='#00592C', command=lambda: change_frame(self,page2))
         button3 = customtkinter.CTkButton(master=self, text="button3", fg_color='#006633',hover_color='#00592C', command=lambda: change_frame(self,page3))
 
-        pollo = Image.open("./images/image.jpg")
-        test = ImageTk.PhotoImage(pollo)
+        mainlogo = Image.open("./images/walkintheparq-logo.png")
+        
+        mainlogo = mainlogo.resize((945, 242))
+
+        test = ImageTk.PhotoImage(mainlogo)
+        
         label = Label(image=test)
         
         
