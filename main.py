@@ -21,15 +21,17 @@ class MainPage(customtkinter.CTkFrame):
         button2 = customtkinter.CTkButton(master=self, text="button2", fg_color='#006633',hover_color='#00592C')
         button3 = customtkinter.CTkButton(master=self, text="button3", fg_color='#006633',hover_color='#00592C')
 
-        image = Image.open("./images/image.jpg")
-        test = ImageTk.PhotoImage(image)
-        self.photo = test
+        pollo = Image.open("./images/image.jpg")
+        test = ImageTk.PhotoImage(pollo)
         label = Label(image=test)
-        label.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
-
+        
+        
         button1.place(relx=0.15, rely=0.5, anchor=customtkinter.CENTER)
         button2.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
         button3.place(relx=0.85, rely=0.5, anchor=customtkinter.CENTER)
+        label.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
+
+        self.centerphoto = test
 
 #Currently an empty second page
 class NewPage(customtkinter.CTkFrame):
