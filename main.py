@@ -16,10 +16,10 @@ class MainPage(customtkinter.CTkFrame):
         text="button1", 
         fg_color='#006633',
         hover_color='#00592C', 
-        command=lambda: change_frame(self,newpage))
+        command=lambda: change_frame(self,page1))
 
-        button2 = customtkinter.CTkButton(master=self, text="button2", fg_color='#006633',hover_color='#00592C')
-        button3 = customtkinter.CTkButton(master=self, text="button3", fg_color='#006633',hover_color='#00592C')
+        button2 = customtkinter.CTkButton(master=self, text="button2", fg_color='#006633',hover_color='#00592C', command=lambda: change_frame(self,page2))
+        button3 = customtkinter.CTkButton(master=self, text="button3", fg_color='#006633',hover_color='#00592C', command=lambda: change_frame(self,page3))
 
         pollo = Image.open("./images/image.jpg")
         test = ImageTk.PhotoImage(pollo)
@@ -55,5 +55,8 @@ class App(customtkinter.CTk):
 
 
 app = App()
-newpage = NewPage(app)
+page1 = NewPage(app)
+page2 = NewPage(app)
+page3 = NewPage(app)
+
 app.mainloop()
