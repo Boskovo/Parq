@@ -16,22 +16,25 @@ class MainPage(customtkinter.CTkFrame):
 
         # add widgets here
         button1 = customtkinter.CTkButton(master=self, 
-        text="Standaard", 
-        fg_color='#006633',
+        text="Standaard",
+        height=150,
+        fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
         command=lambda: change_frame(self,page1))
 
         button2 = customtkinter.CTkButton(master=self, 
         text="Rollator", 
-        fg_color='#006633',
+        height=150,
+        fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
         command=lambda: change_frame(self,page2))
 
         button3 = customtkinter.CTkButton(master=self, 
         text="Rolstoel",
-        fg_color='#006633', 
+        height=150,
+        fg_color='#016634', 
         hover_color='#00592C',
         corner_radius=5, 
         command=lambda: change_frame(self,page3))
@@ -54,7 +57,7 @@ class MainPage(customtkinter.CTkFrame):
         button2.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
         button3.place(relx=0.85, rely=0.5, anchor=customtkinter.CENTER)
         canvas.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
-        canvas.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
+
 
         self.centerphoto = logo
 
