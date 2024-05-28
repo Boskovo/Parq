@@ -11,6 +11,9 @@ class MainPage(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
+        bg_color = 'white'
+        self.configure(fg_color=bg_color)
+
         # add widgets here
         button1 = customtkinter.CTkButton(master=self, 
         text="Standaard", 
@@ -33,20 +36,26 @@ class MainPage(customtkinter.CTkFrame):
         corner_radius=5, 
         command=lambda: change_frame(self,page3))
 
-        mainlogo = Image.open("./images/walkintheparq-logo.png")
-        
-        mainlogo = mainlogo.resize((945, 242))
+        canvas = Canvas(self, width=945, height=242, bg=bg_color, highlightthickness=0)
+        canvas.pack()
 
-        test = ImageTk.PhotoImage(mainlogo)
+        mainlogo = Image.open("./images/walkintheparq-logo.png")
+        mainlogo = mainlogo.resize((945, 242))
         
-        label = Label(image=test)
+        # Ensure image has alpha channel
+        mainlogo = mainlogo.convert("RGBA")
+
+        logo = ImageTk.PhotoImage(mainlogo)
+
+        canvas.create_image(0, 0, anchor=NW, image=logo)
+        canvas.image = logo
         
         button1.place(relx=0.15, rely=0.5, anchor=customtkinter.CENTER)
         button2.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
         button3.place(relx=0.85, rely=0.5, anchor=customtkinter.CENTER)
-        label.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
+        canvas.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
 
-        self.centerphoto = test
+        self.centerphoto = logo
 
 #Currently an empty second page
 class NewPage(customtkinter.CTkFrame):
