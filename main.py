@@ -3,10 +3,10 @@ import customtkinter
 from gui_functions import *
 from PIL import ImageTk, Image
 
-#gui scale for widgets
+# gui scale for widgets
 customtkinter.set_widget_scaling(1.8)
 
-#Main page
+# Main page
 class MainPage(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
@@ -54,18 +54,18 @@ class MainPage(customtkinter.CTkFrame):
         button2.place(relx=0.5, rely=0.5, anchor=customtkinter.CENTER)
         button3.place(relx=0.85, rely=0.5, anchor=customtkinter.CENTER)
         canvas.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
+        canvas.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
 
         self.centerphoto = logo
 
-#Currently an empty second page
+# Currently an empty second page
 class NewPage(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        
-        #add widgets here
-        
 
-#The app itself
+        # add widgets here
+
+# The app itself
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
@@ -73,7 +73,6 @@ class App(customtkinter.CTk):
         self.geometry("1024x600")
         self.grid_rowconfigure(0, weight=1)  # configure grid system
         self.grid_columnconfigure(0, weight=1)
-
         self.my_frame = MainPage(master=self)
         self.my_frame.grid(row=0, column=0, sticky="nsew")
 
