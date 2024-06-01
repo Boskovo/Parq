@@ -68,6 +68,16 @@ class NewPage(customtkinter.CTkFrame):
         super().__init__(master, **kwargs)
 
         # add widgets here
+        #temporary back button
+        backButton = customtkinter.CTkButton(master=self, 
+        text='terug naar home',
+        fg_color='#016634',
+        hover_color='#00592C',
+        corner_radius=5,
+        command=lambda: change_frame(self,main)
+        )
+        
+        backButton.place(relx=0.8,rely=0.8,anchor=customtkinter.CENTER)
 
 # The app itself
 class App(customtkinter.CTk):
@@ -82,6 +92,7 @@ class App(customtkinter.CTk):
 
 
 app = App()
+main = MainPage(app)
 page1 = NewPage(app)
 page2 = NewPage(app)
 page3 = NewPage(app)
