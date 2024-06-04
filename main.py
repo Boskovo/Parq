@@ -18,7 +18,8 @@ class MainPage(customtkinter.CTkFrame):
         # add widgets here
         button1 = customtkinter.CTkButton(master=self, 
         text="Standaard",
-        height=150,
+        height=133,
+        width=120,
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
@@ -26,7 +27,8 @@ class MainPage(customtkinter.CTkFrame):
 
         button2 = customtkinter.CTkButton(master=self, 
         text="Rollator", 
-        height=150,
+        height=133,
+        width=120,
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
@@ -34,7 +36,8 @@ class MainPage(customtkinter.CTkFrame):
 
         button3 = customtkinter.CTkButton(master=self, 
         text="Rolstoel",
-        height=150,
+        height=133,
+        width=120,
         fg_color='#016634', 
         hover_color='#00592C',
         corner_radius=5, 
@@ -76,7 +79,7 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.title("Walk In The ParQ")
-        self.geometry("1024x600")
+        self.geometry("800x480")
         self.grid_rowconfigure(0, weight=1)  # configure grid system
         self.grid_columnconfigure(0, weight=1)
         self.my_frame = MainPage(master=self)
