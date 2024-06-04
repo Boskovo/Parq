@@ -11,8 +11,7 @@ def change_frame(old_frame,new_frame):
 
 def play_video(frame):
     player = vlc.Instance()
-
-    print(platform.system())
+    
     # selecting the video to play
     video = randint(1,7)
     media = player.media_new(f"./Videos/{video}.mp4") 
