@@ -79,11 +79,21 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.title("Walk In The ParQ")
+
+        # configure screen size & set key to turn off fullscreen
         self.geometry("800x480")
-        self.grid_rowconfigure(0, weight=1)  # configure grid system
+        self.attributes("-fullscreen",True)
+        self.state('zoomed')
+        self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
+
+        # configure grid system
+        self.grid_rowconfigure(0, weight=1)  
         self.grid_columnconfigure(0, weight=1)
+
+        # initiate Page of the app itself
         self.my_frame = MainPage(master=self)
         self.my_frame.grid(row=0, column=0, sticky="nsew")
+        
 
 
 app = App()
