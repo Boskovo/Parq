@@ -18,8 +18,8 @@ class MainPage(customtkinter.CTkFrame):
         # add widgets here
         button1 = customtkinter.CTkButton(master=self, 
         text="Standaard",
-        height=133,
-        width=120,
+        height=120,
+        width=115,
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
@@ -27,8 +27,8 @@ class MainPage(customtkinter.CTkFrame):
 
         button2 = customtkinter.CTkButton(master=self, 
         text="Rollator", 
-        height=133,
-        width=120,
+        height=120,
+        width=115,
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
@@ -36,8 +36,8 @@ class MainPage(customtkinter.CTkFrame):
 
         button3 = customtkinter.CTkButton(master=self, 
         text="Rolstoel",
-        height=133,
-        width=120,
+        height=120,
+        width=115,
         fg_color='#016634', 
         hover_color='#00592C',
         corner_radius=5, 
