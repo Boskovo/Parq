@@ -18,7 +18,8 @@ class MainPage(customtkinter.CTkFrame):
         # add widgets here
         button1 = customtkinter.CTkButton(master=self, 
         text="Standaard",
-        height=150,
+        height=120,
+        width=115,
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
@@ -26,7 +27,8 @@ class MainPage(customtkinter.CTkFrame):
 
         button2 = customtkinter.CTkButton(master=self, 
         text="Rollator", 
-        height=150,
+        height=120,
+        width=115,
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
@@ -34,7 +36,8 @@ class MainPage(customtkinter.CTkFrame):
 
         button3 = customtkinter.CTkButton(master=self, 
         text="Rolstoel",
-        height=150,
+        height=120,
+        width=115,
         fg_color='#016634', 
         hover_color='#00592C',
         corner_radius=5, 
@@ -67,28 +70,30 @@ class NewPage(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        # add widgets here
-        #temporary back button
-        backButton = customtkinter.CTkButton(master=self, 
-        text='terug naar home',
-        fg_color='#016634',
-        hover_color='#00592C',
-        corner_radius=5,
-        command=lambda: change_frame(self,main)
-        )
         
-        backButton.place(relx=0.8,rely=0.8,anchor=customtkinter.CENTER)
+        # add widgets here
+        
 
 # The app itself
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.title("Walk In The ParQ")
-        self.geometry("1024x600")
-        self.grid_rowconfigure(0, weight=1)  # configure grid system
+
+        # configure screen size & set key to turn off fullscreen
+        self.geometry("800x480")
+        self.attributes("-fullscreen",True)
+        self.state('zoomed')
+        self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
+
+        # configure grid system
+        self.grid_rowconfigure(0, weight=1)  
         self.grid_columnconfigure(0, weight=1)
+
+        # initiate Page of the app itself
         self.my_frame = MainPage(master=self)
         self.my_frame.grid(row=0, column=0, sticky="nsew")
+        
 
 
 app = App()
