@@ -23,7 +23,7 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
-        command=lambda: change_frame(self,page1))
+        command=lambda: [change_frame(self,page1), play_video_standaard(page1)])
 
         button2 = customtkinter.CTkButton(master=self, 
         text="Rollator", 
@@ -32,7 +32,7 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
-        command=lambda: change_frame(self,page2))
+        command=lambda: [change_frame(self,page2), play_video_standaard(page2)])
 
         button3 = customtkinter.CTkButton(master=self, 
         text="Rolstoel",
@@ -41,7 +41,7 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634', 
         hover_color='#00592C',
         corner_radius=5, 
-        command=lambda: change_frame(self,page3))
+        command=lambda: [change_frame(self,page3), play_video_standaard(page3)])
 
         canvas = Canvas(self, width=945, height=242, bg=bg_color, highlightthickness=0)
         canvas.pack()
@@ -72,8 +72,29 @@ class NewPage(customtkinter.CTkFrame):
 
         
         # add widgets here
-        
 
+# Currently an empty page for 'Standaard'
+class Page1(customtkinter.CTkFrame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+
+        # add widgets here
+
+# Currently an empty page for 'Rollator'
+class Page2(customtkinter.CTkFrame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+
+        # add widgets here
+
+# Currently an empty page for 'Rolstoel'
+class Page3(customtkinter.CTkFrame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+
+        # add widgets here
+
+        
 # The app itself
 class App(customtkinter.CTk):
     def __init__(self):
@@ -82,7 +103,7 @@ class App(customtkinter.CTk):
 
         # configure screen size & set key to turn off fullscreen
         self.geometry("800x480")
-        self.attributes("-fullscreen",True)
+        self.attributes("-fullscreen", True)
         self.state('zoomed')
         self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
 
@@ -90,16 +111,15 @@ class App(customtkinter.CTk):
         self.grid_rowconfigure(0, weight=1)  
         self.grid_columnconfigure(0, weight=1)
 
-        # initiate Page of the app itself
+        # initiate pages of the app itself
         self.my_frame = MainPage(master=self)
         self.my_frame.grid(row=0, column=0, sticky="nsew")
         
-
-
 app = App()
 main = MainPage(app)
-page1 = NewPage(app)
-page2 = NewPage(app)
-page3 = NewPage(app)
+page1 = Page1(app)
+page2 = Page2(app)
+page3 = Page3(app)
 
 app.mainloop()
+
