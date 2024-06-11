@@ -82,7 +82,6 @@ class App(customtkinter.CTk):
 
         # configure screen size & set key to turn off fullscreen
         self.geometry("800x480")
-        self.attributes("-fullscreen",True)
         self.state('zoomed')
         self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
 
@@ -102,4 +101,5 @@ page1 = NewPage(app)
 page2 = NewPage(app)
 page3 = NewPage(app)
 
+app.after(0, lambda:app.state('zoomed'))
 app.mainloop()
