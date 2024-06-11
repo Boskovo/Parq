@@ -3,21 +3,21 @@ from random import randint
 import platform
 
 #function that changes the frame (page) of the application
-def change_frame(old_frame,new_frame):
+def show_frame(app,page_name):
 
-    #define the frames as variables for use by other functions
-    change_frame.old_frame = old_frame
-    change_frame.new_frame = new_frame
+    show_frame.app = app
 
-    #remove old frame from grid and add new frame
-    old_frame.grid_forget()
-    new_frame.grid(row=0, column=0, sticky="nsew")
-
-    play_video(new_frame)
+    frame = app.frames[page_name]
+    frame.tkraise()
+    
+    if page_name == "VideoPage":
+        play_video(frame)
 
 def play_video(frame):
+
     player = vlc.Instance()
-    
+    play_video.player = player
+
     # selecting the video to play
     video = randint(1,7)
     media = player.media_new(f"./Videos/{video}.mp4") 
@@ -46,15 +46,29 @@ def play_video(frame):
     manager.event_attach(vlc.EventType.MediaPlayerEndReached, end_reached)
 
 def end_reached(event):
-
+    app = show_frame.app
     media_player = play_video.media_player
+    player = play_video.player
 
-    #media_player.stop()
-    #media_player.get_media().release()
-    #media_player.release()
-    #media_player.get_instance.release()
+    print('executing end reached function')
+    try:
+        media_player.stop()
+    except Exception as e:
+        print("error stopping media player", e)
 
-    change_frame.new_frame.grid_forget()
-    change_frame.old_frame.grid(row=0, column=0, sticky="nsew")
-    
+    try:
+        media_player.release()
+    except Exception as e:
+        print("error releasing media player", e)
+
+    try:
+        player.release()
+    except Exception as e:
+        print("error releasing vlc instance", e)
+
+    app.update()
+    app.update_idletasks()
+
+    show_frame(app, "MainPage")
+
     print('end reached')
