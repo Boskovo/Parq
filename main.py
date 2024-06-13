@@ -104,7 +104,6 @@ class App(customtkinter.CTk):
         # configure screen size & set key to turn off fullscreen
         self.geometry("800x480")
         self.attributes("-fullscreen", True)
-        self.state('zoomed')
         self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
 
         # configure grid system

@@ -3,6 +3,11 @@ from random import randint
 import platform
 
 
+standaard_videos = 7
+rollator_videos = 6
+rolstoel_videos = randint(1,5)
+
+
 #function that changes the frame (page) of the application
 def change_frame(old_frame,new_frame):
     #remove old frame from grid and add new frame
@@ -15,11 +20,11 @@ def play_video(frame, pagenumber):
     
     # selecting the video to play
     if pagenumber == 1:
-        video = 7
+        video = standaard_videos
     if pagenumber == 2:
-        video = 6
+        video = rollator_videos
     if pagenumber == 3:
-        video = randint(1,5)
+        video = rolstoel_videos
     
     media = player.media_new(f"./Videos/{video}.mp4") 
     
