@@ -14,7 +14,7 @@ def play_video_standaard(frame):
     player = vlc.Instance()
     
     # selecting the video to play
-    video = randint(1,7)
+    video = 7
     media = player.media_new(f"./Videos/{video}.mp4") 
     
     # creating a media player object
@@ -36,7 +36,7 @@ def play_video_rollator(frame):
     player = vlc.Instance()
     
     # selecting the video to play
-    video = randint(1,7)
+    video = 6
     media = player.media_new(f"./Videos/{video}.mp4") 
     
     # creating a media player object
@@ -58,7 +58,7 @@ def play_video_rolstoel(frame):
     player = vlc.Instance()
     
     # selecting the video to play
-    video = randint(1,7)
+    video = randint(1,5)
     media = player.media_new(f"./Videos/{video}.mp4") 
     
     # creating a media player object
