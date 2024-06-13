@@ -81,7 +81,6 @@ class App(customtkinter.CTk):
         # configure screen size & set key to turn off fullscreen
         self.geometry("800x480")
         self.attributes("-fullscreen",True)
-        self.state('zoomed')
         self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
 
         # configure grid system
@@ -89,8 +88,6 @@ class App(customtkinter.CTk):
         self.grid_columnconfigure(0, weight=1)
 
         # initiate Page of the app itself
-        #self.my_frame = MainPage(master=self)
-        #self.my_frame.grid(row=0, column=0, sticky="nsew")
 
         self.frames = {}
         for f in (MainPage,VideoPage):
