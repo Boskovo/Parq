@@ -14,7 +14,7 @@ class MainPage(customtkinter.CTkFrame):
         bg_color = 'white'
         self.configure(fg_color=bg_color)
         self._corner_radius = 0
-
+        
         # add widgets here
         button1 = customtkinter.CTkButton(master=self, 
         text="Standaard",
@@ -23,7 +23,7 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
-        command=lambda: change_frame(self,page1))
+        command=lambda: show_frame(master,"VideoPage"))
 
         button2 = customtkinter.CTkButton(master=self, 
         text="Rollator", 
@@ -32,7 +32,7 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
-        command=lambda: change_frame(self,page2))
+        command=lambda: show_frame(master,"VideoPage"))
 
         button3 = customtkinter.CTkButton(master=self, 
         text="Rolstoel",
@@ -41,7 +41,7 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634', 
         hover_color='#00592C',
         corner_radius=5, 
-        command=lambda: change_frame(self,page3))
+        command=lambda: show_frame(master,"VideoPage"))
 
         canvas = Canvas(self, width=945, height=242, bg=bg_color, highlightthickness=0)
         canvas.pack()
@@ -66,11 +66,9 @@ class MainPage(customtkinter.CTkFrame):
         self.centerphoto = logo
 
 # Currently an empty second page
-class NewPage(customtkinter.CTkFrame):
+class VideoPage(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-
-        
         # add widgets here
         
 
@@ -83,7 +81,6 @@ class App(customtkinter.CTk):
         # configure screen size & set key to turn off fullscreen
         self.geometry("800x480")
         self.attributes("-fullscreen",True)
-        self.state('zoomed')
         self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
 
         # configure grid system
@@ -91,15 +88,19 @@ class App(customtkinter.CTk):
         self.grid_columnconfigure(0, weight=1)
 
         # initiate Page of the app itself
-        self.my_frame = MainPage(master=self)
-        self.my_frame.grid(row=0, column=0, sticky="nsew")
+
+        self.frames = {}
+        for f in (MainPage,VideoPage):
+            page_name = f.__name__
+            frame = f(master=self)
+            self.frames[page_name] = frame
+            frame.grid(row=0, column=0, sticky="nsew")
+        
+        show_frame(self, "MainPage")
         
 
 
 app = App()
 main = MainPage(app)
-page1 = NewPage(app)
-page2 = NewPage(app)
-page3 = NewPage(app)
 
 app.mainloop()
