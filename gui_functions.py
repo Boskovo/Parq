@@ -2,7 +2,10 @@ import vlc
 from random import randint
 import platform
 import time
-from threading import Thread
+from threading import Thread, Event
+
+# define event that is used to detect the end of the Thread
+stop_event = Event()
 
 #function that changes the frame (page) of the application
 def show_frame(app,page_name):
@@ -16,6 +19,8 @@ def show_frame(app,page_name):
         play_video(frame)
 
 def play_video(frame):
+
+    stop_event.clear()
 
     # define vlc player instance
     player = vlc.Instance()
@@ -42,36 +47,37 @@ def play_video(frame):
     #define the manager for the media player
     manager = media_player.event_manager()
 
-    Thread(target=detect_reset, args=(media_player,),daemon=True).start()
-
     # start playing video
     media_player.play()
 
     #detect an EndReached event and call the end_reached function
     manager.event_attach(vlc.EventType.MediaPlayerEndReached, end_reached)
 
-vidOver = False
-def end_reached(event):
-    global vidOver
-    vidOver = True
+    # start Thread that detects when the end_reached function is called
+    Thread(target=detect_reset, args=(media_player,),daemon=True).start()
 
+# set the stop event when the end of the video is reached
+def end_reached(event):
+    stop_event.set()
+
+#detect when to reset the app
 def detect_reset(object):
-    global vidOver
+
+    #get app and vlc instance
     app = show_frame.app
     player = play_video.player
 
-    vidOver = False
-
-    while 1:
-        if vidOver is True:
-            vidOver = False
-
-            object.stop()
-            object.release()
-            player.release()
-
-            show_frame(app, "MainPage")
-            print('reached the end')
-
+    #check if stop_event is set
+    while not stop_event.is_set():
         print('checking')
         time.sleep(0.2)
+
+    #stop and release the media_player
+    object.stop()
+    object.release()
+
+    #release the vlc instance
+    player.release()
+
+    #go back to main page
+    show_frame(app, "MainPage")
