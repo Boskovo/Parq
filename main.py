@@ -23,7 +23,7 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
-        command=lambda: [change_frame(self,page1), play_video_standaard(page1)])
+        command=lambda: [change_frame(self,page1), play_video(page1, 1)])
 
         button2 = customtkinter.CTkButton(master=self, 
         text="Rollator", 
@@ -32,7 +32,7 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
-        command=lambda: [change_frame(self,page2), play_video_rollator(page2)])
+        command=lambda: [change_frame(self,page2), play_video(page2, 2)])
 
         button3 = customtkinter.CTkButton(master=self, 
         text="Rolstoel",
@@ -41,7 +41,7 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634', 
         hover_color='#00592C',
         corner_radius=5, 
-        command=lambda: [change_frame(self,page3), play_video_rolstoel(page3)])
+        command=lambda: [change_frame(self,page3), play_video(page3, 3)])
 
         canvas = Canvas(self, width=945, height=242, bg=bg_color, highlightthickness=0)
         canvas.pack()
