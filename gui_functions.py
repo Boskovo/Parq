@@ -69,7 +69,6 @@ def detect_reset(object):
 
     #check if stop_event is set
     while not stop_event.is_set():
-        print('checking')
         time.sleep(0.2)
 
     #stop and release the media_player
