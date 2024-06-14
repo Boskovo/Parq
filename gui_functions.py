@@ -51,9 +51,9 @@ def play_video(frame,video_type):
 
     #connecting the media player object to the frame (conditional logic for ease of use on different platforms)
     if platform.system() == 'Windows':
-        media_player.set_hwnd(frame.winfo_id())
+        media_player.set_hwnd(frame.video_frame.winfo_id())
     else:
-        media_player.set_xwindow(frame.winfo_id())
+        media_player.set_xwindow(frame.video_frame.winfo_id())
 
     #set the video to the media player
     media_player.set_media(media) 
@@ -69,6 +69,20 @@ def play_video(frame,video_type):
 
     # start Thread that detects when the end_reached function is called
     Thread(target=detect_reset, args=(media_player,),daemon=True).start()
+
+def pause_or_play_video(pause_button):
+
+    media_player = play_video.media_player
+
+    # Check if the video is currently playing
+    if media_player.get_state() == vlc.State.Playing:
+        # If the video is playing, pause it and change the button text to "Play"
+        media_player.pause()
+        pause_button.configure(text="Play")
+    else:
+        # If the video is paused, play it and change the button text to "Pause"
+        media_player.play()
+        pause_button.configure(text="Pause")
 
 # set the stop event when the end of the video is reached
 def end_reached(event):
@@ -93,4 +107,4 @@ def detect_reset(object):
     player.release()
 
     #go back to main page
-    show_frame(app, "MainPage")
+    show_frame(app, "MainPage", 0)
