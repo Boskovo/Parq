@@ -7,19 +7,26 @@ from threading import Thread, Event
 # define event that is used to detect the end of the Thread
 stop_event = Event()
 
+# define which videos belong to what type
+standaard_videos = 7
+rollator_videos = 6
+rolstoel_videos = randint(1,5)
+
 #function that changes the frame (page) of the application
-def show_frame(app,page_name):
+def show_frame(app, page_name, video_type):
 
     show_frame.app = app
 
+    # display the page
     frame = app.frames[page_name]
     frame.tkraise()
     
     if page_name == "VideoPage":
-        play_video(frame)
+        play_video(frame, video_type)
 
-def play_video(frame):
+def play_video(frame,video_type):
 
+    #clean up the stop event
     stop_event.clear()
 
     # define vlc player instance
@@ -27,7 +34,14 @@ def play_video(frame):
     play_video.player = player
 
     # selecting the video to play
-    video = randint(1,7)
+
+    if video_type == 1:
+        video = standaard_videos
+    if video_type == 2:
+        video = rollator_videos
+    if video_type == 3:
+        video = rolstoel_videos
+
     media = player.media_new(f"./Videos/{video}.mp4") 
     
     # creating a media player object
