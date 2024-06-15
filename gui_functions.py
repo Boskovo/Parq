@@ -30,7 +30,7 @@ def play_video(frame,video_type):
     stop_event.clear()
 
     # define vlc player instance
-    player = vlc.Instance()
+    player = vlc.Instance('--vout', 'gles2')
     play_video.player = player
 
     # selecting the video to play
@@ -48,6 +48,9 @@ def play_video(frame,video_type):
     media_player = player.media_player_new()
 
     play_video.media_player = media_player
+
+    #Ensure the video_frame is mapped before setting the window ID
+    frame.video_frame.update_idletasks()
 
     #connecting the media player object to the frame (conditional logic for ease of use on different platforms)
     if platform.system() == 'Windows':
@@ -68,7 +71,7 @@ def play_video(frame,video_type):
     manager.event_attach(vlc.EventType.MediaPlayerEndReached, end_reached)
 
     # start Thread that detects when the end_reached function is called
-    Thread(target=detect_reset, args=(media_player,),daemon=True).start()
+    Thread(target=detect_reset, args=(media_player,), daemon=True).start()
 
 def pause_or_play_video(pause_button):
 
