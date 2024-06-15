@@ -30,7 +30,7 @@ def play_video(frame,video_type):
     stop_event.clear()
 
     # define vlc player instance
-    player = vlc.Instance('--vout', 'gles2')
+    player = vlc.Instance('--no-xlib')  # Disable Xlib to avoid issues on RPi
     play_video.player = player
 
     # selecting the video to play
