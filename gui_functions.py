@@ -1,5 +1,5 @@
 import vlc
-from random import randint
+from random import randint, choice
 import platform
 import time
 from threading import Thread, Event
@@ -8,9 +8,9 @@ from threading import Thread, Event
 stop_event = Event()
 
 # define which videos belong to what type
-standaard_videos = 7
-rollator_videos = 6
-rolstoel_videos = randint(1,5)
+standaard_videos = [7, 10, 11, 13]
+rollator_videos = [6, 8, 9, 12]
+rolstoel_videos = [1, 2, 3, 4, 5]
 
 #function that changes the frame (page) of the application
 def show_frame(app, page_name, video_type):
@@ -36,11 +36,11 @@ def play_video(frame,video_type):
     # selecting the video to play
 
     if video_type == 1:
-        video = standaard_videos
+        video = choice(standaard_videos)
     if video_type == 2:
-        video = rollator_videos
+        video = choice(rollator_videos)
     if video_type == 3:
-        video = rolstoel_videos
+        video = choice(rolstoel_videos)
 
     media = player.media_new(f"./Videos/{video}.mp4") 
     
