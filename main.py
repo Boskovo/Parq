@@ -93,9 +93,8 @@ class VideoPage(customtkinter.CTkFrame):
         fg_color='#016634', 
         hover_color='#00592C',
         command=lambda: pause_or_play_video(pause_button))
-        pause_button.pack(side=customtkinter.LEFT)
 
-        pause_button.place(relx=0.5, rely=0.88, anchor=customtkinter.S)
+        pause_button.place(relx=0.5, rely=0.75, anchor=customtkinter.S)
         
 # The app itself
 class App(customtkinter.CTk):
