@@ -85,9 +85,16 @@ class VideoPage(customtkinter.CTkFrame):
         button_frame.pack(side=customtkinter.BOTTOM, fill=customtkinter.X)
 
         # Create pause and play buttons
-        pause_button = customtkinter.CTkButton(button_frame, text="Pause", command=lambda: pause_or_play_video(pause_button))
+        pause_button = customtkinter.CTkButton(
+        button_frame, 
+        text="Pauze", 
+        fg_color='#016634', 
+        hover_color='#00592C',
+        command=lambda: pause_or_play_video(pause_button))
         pause_button.pack(side=customtkinter.LEFT)
+
         
+
 
 # The app itself
 class App(customtkinter.CTk):
