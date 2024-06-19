@@ -81,11 +81,11 @@ def pause_or_play_video(pause_button):
     if media_player.get_state() == vlc.State.Playing:
         # If the video is playing, pause it and change the button text to "Play"
         media_player.pause()
-        pause_button.configure(text="Play")
+        pause_button.configure(text="Afspelen")
     else:
         # If the video is paused, play it and change the button text to "Pause"
         media_player.play()
-        pause_button.configure(text="Pause")
+        pause_button.configure(text="Pauze")
 
 # set the stop event when the end of the video is reached
 def end_reached(event):
