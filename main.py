@@ -70,13 +70,18 @@ class VideoPage(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
+        bg_color = 'white'
+        self.configure(fg_color=bg_color)
+
         # add widgets here
         # Create a new frame for the video
         self.video_frame = customtkinter.CTkFrame(self)
+        self.video_frame.configure(fg_color=bg_color)
         self.video_frame.pack(side=customtkinter.TOP, fill=customtkinter.BOTH, expand=True)
 
         # Create a new frame for the buttons
         button_frame = customtkinter.CTkFrame(self)
+        button_frame.configure(fg_color=bg_color)
         button_frame.pack(side=customtkinter.BOTTOM, fill=customtkinter.X)
 
         # Create pause and play buttons
