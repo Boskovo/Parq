@@ -111,3 +111,18 @@ def detect_reset(object):
 
     #go back to main page
     show_frame(app, "MainPage", 0)
+
+def return_home(frame):
+    # Stop the video and release resources
+    media_player = play_video.media_player
+    if media_player.get_state() == vlc.State.Playing:
+        media_player.stop()
+    media_player.release()
+    play_video.player.release()
+
+    # Set the stop event to ensure detect_reset function completes
+    stop_event.set()
+
+    # Show the main page
+    app = show_frame.app
+    show_frame(app, "MainPage", 0)

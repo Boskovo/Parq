@@ -2,6 +2,7 @@ from tkinter import *
 import customtkinter
 from gui_functions import *
 from PIL import ImageTk, Image
+import threading
 
 # gui scale for widgets
 customtkinter.set_widget_scaling(1.8)
@@ -94,7 +95,17 @@ class VideoPage(customtkinter.CTkFrame):
         hover_color='#00592C',
         command=lambda: pause_or_play_video(pause_button))
 
-        pause_button.place(relx=0.5, rely=0.75, anchor=customtkinter.S)
+        back_button = customtkinter.CTkButton(
+        button_frame, 
+        text="Terug",
+        height=35,
+        width=110, 
+        fg_color='#016634', 
+        hover_color='#00592C',
+        command=lambda: threading.Thread(target=return_home, args=(self,)).start())
+
+        back_button.place(relx=0.05, rely=0.75, anchor=customtkinter.SW)
+        pause_button.place(relx=0.95, rely=0.75, anchor=customtkinter.SE)
         
 # The app itself
 class App(customtkinter.CTk):
@@ -121,8 +132,6 @@ class App(customtkinter.CTk):
             frame.grid(row=0, column=0, sticky="nsew")
         
         show_frame(self, "MainPage", 0)
-        
-
 
 app = App()
 main = MainPage(app)
