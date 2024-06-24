@@ -104,7 +104,6 @@ class App(customtkinter.CTk):
 
         # configure screen size & set key to turn off fullscreen
         self.geometry("800x480")
-        self.attributes("-fullscreen",True)
         self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
 
         # configure grid system
@@ -119,6 +118,9 @@ class App(customtkinter.CTk):
             frame = f(master=self)
             self.frames[page_name] = frame
             frame.grid(row=0, column=0, sticky="nsew")
+        
+        #set app to fullscreen after a second to ensure it works on the pi
+        self.after(1000,lambda: self.attributes("-fullscreen",True))
         
         show_frame(self, "MainPage", 0)
         
