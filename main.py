@@ -15,9 +15,9 @@ class MainPage(customtkinter.CTkFrame):
         self.configure(fg_color=bg_color)
         self._corner_radius = 0
         
-        # add widgets here
+        # Add widgets here
         button1 = customtkinter.CTkButton(master=self, 
-        text="Standaard",
+        text="Lopen",
         height=120,
         width=115,
         fg_color='#016634',
@@ -45,23 +45,28 @@ class MainPage(customtkinter.CTkFrame):
 
         canvas = Canvas(self, width=945, height=242, bg=bg_color, highlightthickness=0)
         canvas.pack()
-
         mainlogo = Image.open("./images/walkintheparq-logo.png")
-        mainlogo = mainlogo.resize((945, 242))
-        
+        mainlogo = mainlogo.resize((700, 179))
+    
         # Ensure image has alpha channel
         mainlogo = mainlogo.convert("RGBA")
-
         logo = ImageTk.PhotoImage(mainlogo)
-
-        canvas.create_image(0, 0, anchor=NW, image=logo)
+        canvas.create_image(120, 0, anchor=NW, image=logo)
         canvas.image = logo
-        
+
+        # Tekstlabel "Hoe verplaatst u zich?" toevoegen
+        question_label = customtkinter.CTkLabel(master=self, text="Hoe verplaatst u zich?", fg_color=bg_color, text_color="black", font=("Roboto", 20))
+        question_label.pack(pady=(85, 20))  # Pas de padding aan om de positie te verfijnen
+
         button1.place(relx=0.15, rely=0.7, anchor=customtkinter.CENTER)
         button2.place(relx=0.5, rely=0.7, anchor=customtkinter.CENTER)
         button3.place(relx=0.85, rely=0.7, anchor=customtkinter.CENTER)
         canvas.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
 
+        # Bring buttons to the front
+        button1.lift()
+        button2.lift()
+        button3.lift()
 
         self.centerphoto = logo
 
@@ -124,8 +129,6 @@ class App(customtkinter.CTk):
         
         show_frame(self, "MainPage", 0)
         
-
-
 app = App()
 main = MainPage(app)
 
