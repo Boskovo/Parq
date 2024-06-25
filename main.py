@@ -17,7 +17,7 @@ class MainPage(customtkinter.CTkFrame):
         
         # Add widgets here
         button1 = customtkinter.CTkButton(master=self, 
-        text="Lopen",
+        text="Lopend",
         height=120,
         width=115,
         fg_color='#016634',
@@ -26,7 +26,7 @@ class MainPage(customtkinter.CTkFrame):
         command=lambda: show_frame(master,"VideoPage", 1))
 
         button2 = customtkinter.CTkButton(master=self, 
-        text="Rollator", 
+        text="Met een Rollator", 
         height=120,
         width=115,
         fg_color='#016634',
@@ -35,7 +35,7 @@ class MainPage(customtkinter.CTkFrame):
         command=lambda: show_frame(master,"VideoPage", 2))
 
         button3 = customtkinter.CTkButton(master=self, 
-        text="Rolstoel",
+        text="Met een Rolstoel",
         height=120,
         width=115,
         fg_color='#016634', 
@@ -55,7 +55,7 @@ class MainPage(customtkinter.CTkFrame):
         canvas.image = logo
 
         # Tekstlabel "Hoe verplaatst u zich?" toevoegen
-        question_label = customtkinter.CTkLabel(master=self, text="Hoe verplaatst u zich?", fg_color=bg_color, text_color="black", font=("Roboto", 20))
+        question_label = customtkinter.CTkLabel(master=self, text="Hoe verplaatst u zich?", fg_color=bg_color, text_color="#626262", font=("Roboto", 17))
         question_label.pack(pady=(85, 20))  # Pas de padding aan om de positie te verfijnen
 
         button1.place(relx=0.15, rely=0.7, anchor=customtkinter.CENTER)
