@@ -107,9 +107,10 @@ class App(customtkinter.CTk):
         super().__init__()
         self.title("Walk In The ParQ")
 
-        # configure screen size & set key to turn off fullscreen
+        # configure screen size & set key to toggle off fullscreen
         self.geometry("800x480")
         self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
+        self.bind("f", lambda event: self.attributes("-fullscreen", True))
 
         # configure grid system
         self.grid_rowconfigure(0, weight=1)  
