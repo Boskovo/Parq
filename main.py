@@ -2,9 +2,8 @@ from tkinter import *
 import customtkinter
 from gui_functions import *
 from PIL import ImageTk, Image
-import threading
 
-# gui scale for widgets
+# GUI scale for widgets
 customtkinter.set_widget_scaling(1.8)
 
 # Main page
@@ -16,7 +15,7 @@ class MainPage(customtkinter.CTkFrame):
         self.configure(fg_color=bg_color)
         self._corner_radius = 0
         
-        # add widgets here
+        # Add widgets here
         button1 = customtkinter.CTkButton(master=self, 
         text="Standaard",
         height=120,
@@ -63,7 +62,6 @@ class MainPage(customtkinter.CTkFrame):
         button3.place(relx=0.85, rely=0.7, anchor=customtkinter.CENTER)
         canvas.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
 
-
         self.centerphoto = logo
 
 # Currently an empty second page
@@ -74,7 +72,7 @@ class VideoPage(customtkinter.CTkFrame):
         bg_color = 'white'
         self.configure(fg_color=bg_color)
 
-        # add widgets here
+        # Add widgets here
         # Create a new frame for the video
         self.video_frame = customtkinter.CTkFrame(self)
         self.video_frame.configure(fg_color=bg_color)
@@ -87,22 +85,22 @@ class VideoPage(customtkinter.CTkFrame):
 
         # Create pause and play buttons
         pause_button = customtkinter.CTkButton(
-        button_frame, 
-        text="Pauze",
-        height=35,
-        width=110, 
-        fg_color='#016634', 
-        hover_color='#00592C',
-        command=lambda: pause_or_play_video(pause_button))
+            button_frame, 
+            text="Pauze",
+            height=35,
+            width=110, 
+            fg_color='#016634', 
+            hover_color='#00592C',
+            command=lambda: pause_or_play_video(pause_button))
 
         back_button = customtkinter.CTkButton(
-        button_frame, 
-        text="Terug",
-        height=35,
-        width=110, 
-        fg_color='#016634', 
-        hover_color='#00592C',
-        command=lambda: threading.Thread(target=return_home, args=(self,)).start())
+            button_frame, 
+            text="Terug",
+            height=35,
+            width=110, 
+            fg_color='#016634', 
+            hover_color='#00592C',
+            command=stop_and_reset)
 
         back_button.place(relx=0.05, rely=0.75, anchor=customtkinter.SW)
         pause_button.place(relx=0.95, rely=0.75, anchor=customtkinter.SE)
@@ -113,19 +111,18 @@ class App(customtkinter.CTk):
         super().__init__()
         self.title("Walk In The ParQ")
 
-        # configure screen size & set key to turn off fullscreen
+        # Configure screen size & set key to turn off fullscreen
         self.geometry("800x480")
         self.attributes("-fullscreen",True)
-        self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
+        self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) # Press escape to quit fullscreen
 
-        # configure grid system
+        # Configure grid system
         self.grid_rowconfigure(0, weight=1)  
         self.grid_columnconfigure(0, weight=1)
 
-        # initiate Page of the app itself
-
+        # Initiate Page of the app itself
         self.frames = {}
-        for f in (MainPage,VideoPage):
+        for f in (MainPage, VideoPage):
             page_name = f.__name__
             frame = f(master=self)
             self.frames[page_name] = frame
