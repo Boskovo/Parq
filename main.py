@@ -16,6 +16,21 @@ class MainPage(customtkinter.CTkFrame):
         self._corner_radius = 0
         
         # Add widgets here
+        
+        # Laad de afbeelding
+        lopend_image = Image.open("./images/lopend.png")
+        lopend_image = lopend_image.resize((200, 200))  # Pas de grootte aan indien nodig
+        lopend_photo = ImageTk.PhotoImage(lopend_image)
+
+        rollator_image = Image.open("./images/rollator.png")
+        rollator_image = rollator_image.resize((200, 200))  # Pas de grootte aan indien nodig
+        rollator_photo = ImageTk.PhotoImage(rollator_image)
+
+        rolstoel_image = Image.open("./images/rolstoel.png")
+        rolstoel_image = rolstoel_image.resize((200, 200))  # Pas de grootte aan indien nodig
+        rolstoel_photo = ImageTk.PhotoImage(rolstoel_image)
+
+        # Voeg de afbeelding toe aan de knop
         button1 = customtkinter.CTkButton(master=self, 
         text="Lopend",
         height=120,
@@ -23,7 +38,11 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
+        image=lopend_photo,  # Voeg de afbeelding toe
+        compound="top",  # Positie van de tekst ten opzichte van de afbeelding
         command=lambda: show_frame(master,"VideoPage", 1))
+
+        button1.image = lopend_photo  # Houd een referentie naar de afbeelding
 
         button2 = customtkinter.CTkButton(master=self, 
         text="Met een Rollator", 
@@ -32,7 +51,11 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634',
         hover_color='#00592C',
         corner_radius=5,
+        image=rollator_photo,  # Voeg de afbeelding toe
+        compound="top",  # Positie van de tekst ten opzichte van de afbeelding
         command=lambda: show_frame(master,"VideoPage", 2))
+
+        button1.image = rollator_photo  # Houd een referentie naar de afbeelding
 
         button3 = customtkinter.CTkButton(master=self, 
         text="Met een Rolstoel",
@@ -41,7 +64,12 @@ class MainPage(customtkinter.CTkFrame):
         fg_color='#016634', 
         hover_color='#00592C',
         corner_radius=5, 
+        image=rolstoel_photo,  # Voeg de afbeelding toe
+        compound="top",  # Positie van de tekst ten opzichte van de afbeelding
         command=lambda: show_frame(master,"VideoPage", 3))
+
+        button1.image = rolstoel_photo  # Houd een referentie naar de afbeelding
+
 
         canvas = Canvas(self, width=945, height=242, bg=bg_color, highlightthickness=0)
         canvas.pack()
