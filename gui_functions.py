@@ -30,9 +30,10 @@ def play_video(frame,video_type):
     stop_event.clear()
 
     options = [
-    '--codec=avcodec',      # Use avcodec for decoding
+    '--codec', 'h264_v4l2m2m',      # Use avcodec for decoding
     '--avcodec-hw=any',     # Enable hardware acceleration so the video is decoded on the GPU
     '--avcodec-skiploopfilter=4',  # Decrease cpu load by skipping loop filters on non-reference frames
+    '--file-caching=3000',      # Adjust caching to improve playback
     '--no-xlib',            # Disable Xlib to avoid issues on RPi
     ]      
 
