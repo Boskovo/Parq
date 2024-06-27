@@ -27,8 +27,15 @@ def play_video(frame, video_type):
     # Clean up the stop event
     stop_event.clear()
 
-    # Define VLC player instance
-    player = vlc.Instance('--no-xlib')  # Disable Xlib to avoid issues on RPi
+    options = [
+    '--codec=avcodec',      # Use avcodec for decoding
+    '--avcodec-hw=any',     # Enable hardware acceleration so the video is decoded on the GPU
+    '--avcodec-skiploopfilter=4',  # Decrease cpu load by skipping loop filters on non-reference frames
+    '--no-xlib',            # Disable Xlib to avoid issues on RPi
+    ]      
+
+    # define vlc player instance
+    player = vlc.Instance(*options)  
     play_video.player = player
 
     # Selecting the video to play

@@ -17,7 +17,7 @@ class MainPage(customtkinter.CTkFrame):
         
         # Add widgets here
         button1 = customtkinter.CTkButton(master=self, 
-        text="Standaard",
+        text="Lopend",
         height=120,
         width=115,
         fg_color='#016634',
@@ -26,7 +26,7 @@ class MainPage(customtkinter.CTkFrame):
         command=lambda: show_frame(master,"VideoPage", 1))
 
         button2 = customtkinter.CTkButton(master=self, 
-        text="Rollator", 
+        text="Met een Rollator", 
         height=120,
         width=115,
         fg_color='#016634',
@@ -35,7 +35,7 @@ class MainPage(customtkinter.CTkFrame):
         command=lambda: show_frame(master,"VideoPage", 2))
 
         button3 = customtkinter.CTkButton(master=self, 
-        text="Rolstoel",
+        text="Met een Rolstoel",
         height=120,
         width=115,
         fg_color='#016634', 
@@ -45,22 +45,28 @@ class MainPage(customtkinter.CTkFrame):
 
         canvas = Canvas(self, width=945, height=242, bg=bg_color, highlightthickness=0)
         canvas.pack()
-
         mainlogo = Image.open("./images/walkintheparq-logo.png")
-        mainlogo = mainlogo.resize((945, 242))
-        
+        mainlogo = mainlogo.resize((700, 179))
+    
         # Ensure image has alpha channel
         mainlogo = mainlogo.convert("RGBA")
-
         logo = ImageTk.PhotoImage(mainlogo)
-
-        canvas.create_image(0, 0, anchor=NW, image=logo)
+        canvas.create_image(120, 0, anchor=NW, image=logo)
         canvas.image = logo
-        
+
+        # Tekstlabel "Hoe verplaatst u zich?" toevoegen
+        question_label = customtkinter.CTkLabel(master=self, text="Hoe verplaatst u zich?", fg_color=bg_color, text_color="#626262", font=("Roboto", 17))
+        question_label.pack(pady=(85, 20))  # Pas de padding aan om de positie te verfijnen
+
         button1.place(relx=0.15, rely=0.7, anchor=customtkinter.CENTER)
         button2.place(relx=0.5, rely=0.7, anchor=customtkinter.CENTER)
         button3.place(relx=0.85, rely=0.7, anchor=customtkinter.CENTER)
         canvas.place(relx=0.5, rely=0.25, anchor=customtkinter.CENTER)
+
+        # Bring buttons to the front
+        button1.lift()
+        button2.lift()
+        button3.lift()
 
         self.centerphoto = logo
 
@@ -111,10 +117,10 @@ class App(customtkinter.CTk):
         super().__init__()
         self.title("Walk In The ParQ")
 
-        # Configure screen size & set key to turn off fullscreen
+        # configure screen size & set key to toggle off fullscreen
         self.geometry("800x480")
-        self.attributes("-fullscreen",True)
-        self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) # Press escape to quit fullscreen
+        self.bind("<Escape>", lambda event: self.attributes("-fullscreen", False)) #press escape to quit fullscreen
+        self.bind("f", lambda event: self.attributes("-fullscreen", True))
 
         # Configure grid system
         self.grid_rowconfigure(0, weight=1)  
@@ -128,8 +134,11 @@ class App(customtkinter.CTk):
             self.frames[page_name] = frame
             frame.grid(row=0, column=0, sticky="nsew")
         
+        #set app to fullscreen after a second to ensure it works on the pi
+        self.after(1000,lambda: self.attributes("-fullscreen",True))
+        
         show_frame(self, "MainPage", 0)
-
+        
 app = App()
 main = MainPage(app)
 
